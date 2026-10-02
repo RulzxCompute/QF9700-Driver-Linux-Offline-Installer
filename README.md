@@ -4,7 +4,7 @@ A lightweight, offline-friendly installer and management toolkit for **QF9700 / 
 
 This project packages the Linux QF9700 driver together with an automated installation workflow, USB device detection, network configuration, diagnostics, and boot persistence — designed for systems that **may not have an internet connection during installation**.
 
-> Built for old and offline Ubuntu systems where "just `apt install` it" is not exactly an option. 🗿
+> Built for old and offline Ubuntu systems where "just `apt install` it" is not exactly an option. :)
 
 ---
 
