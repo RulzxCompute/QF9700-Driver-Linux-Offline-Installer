@@ -1,0 +1,31 @@
+QF9700 offline toolchain sources (amd64)
+=====================================
+date    : 2026-10-02 (UTC)
+target  : Ubuntu 22.04 jammy, amd64
+builder : downloaded via archive.ubuntu.com / security.ubuntu.com
+
+files:
+  make_4.3-4.1build1_amd64.deb
+    http://archive.ubuntu.com/ubuntu/pool/main/m/make-dfsg/make_4.3-4.1build1_amd64.deb
+  gcc_11.2.0-1ubuntu1_amd64.deb
+    http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/gcc_11.2.0-1ubuntu1_amd64.deb
+  cpp_11.2.0-1ubuntu1_amd64.deb
+    http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/cpp_11.2.0-1ubuntu1_amd64.deb
+  gcc-11_11.4.0-1ubuntu1~22.04.3_amd64.deb
+    http://security.ubuntu.com/ubuntu/pool/main/g/gcc-11/gcc-11_11.4.0-1ubuntu1~22.04.3_amd64.deb
+  cpp-11_11.4.0-1ubuntu1~22.04.3_amd64.deb
+    http://security.ubuntu.com/ubuntu/pool/main/g/gcc-11/cpp-11_11.4.0-1ubuntu1~22.04.3_amd64.deb
+  gcc-11-base_11.4.0-1ubuntu1~22.04.3_amd64.deb
+    http://security.ubuntu.com/ubuntu/pool/main/g/gcc-11/gcc-11-base_11.4.0-1ubuntu1~22.04.3_amd64.deb
+  libisl23_0.24-2build1_amd64.deb
+    http://archive.ubuntu.com/ubuntu/pool/main/i/isl/libisl23_0.24-2build1_amd64.deb
+  libmpc3_1.2.1-2build1_amd64.deb
+    http://archive.ubuntu.com/ubuntu/pool/main/m/mpclib3/libmpc3_1.2.1-2build1_amd64.deb
+
+excluded (intentionally, see README.md):
+  libcc1-0_12.3.0-1ubuntu1~22.04.3 (GCC 12 GDB plugin, version skew)
+  libgcc-11-dev_11.4.0-1ubuntu1~22.04.3 + sanitizer runtimes (not linked by kernel build)
+
+install (offline, on target):
+  sudo ./scripts/install-toolchain.sh
+  # or automatically via: sudo ./install.sh

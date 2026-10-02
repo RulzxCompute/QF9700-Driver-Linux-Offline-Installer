@@ -1,0 +1,47 @@
+QF9700 driver source bundled for offline installation
+====================================================
+
+Upstream project:
+  https://github.com/pgquiles/qf9700
+  Linux driver for the Genoa Systems QF9700 USB2NET network adapter.
+  Original author: jokeliujl <jokeliu@163.com> (2010-10-01), GPLv2.
+
+What is bundled here:
+  qf9700.c   - driver source (patched for modern kernels, see header)
+  qf9700.h   - register definitions (unchanged from upstream)
+  Makefile   - builds qf9700.ko against /lib/modules/$(uname -r)/build
+  dkms.conf  - optional DKMS registration (version 1.0)
+
+Patches vs upstream pgquiles/qf9700:
+  1. USB IDs: upstream only claims 0fe6:9700.
+     This bundle also claims 0fe6:9702 on USB interface 1 via:
+       USB_DEVICE_INTERFACE_NUMBER(0x0fe6, 0x9702, 1)
+     Reason: 9702 is a composite device. Interface 0 is a fake
+     USB-storage CD-ROM (Windows drivers), interface 1 is the real
+     Ethernet function. Without the interface-number match the driver
+     never binds on 9702. (Same fix as genocem/bzapal forks.)
+  2. Modern kernel build (5.15 / 6.x, Ubuntu 22.04 GA + HWE):
+     - removed .get_settings/.set_settings from ethtool_ops
+       (removed from struct ethtool_ops since 4.x)
+     - .ndo_eth_ioctl on >= 5.15, .ndo_do_ioctl on older kernels
+     - eth_hw_addr_set() on >= 5.17, memcpy(dev_addr) fallback older
+     - FLAG_LINK_INTR, supports_autosuspend, dev_dbg(), mdelay()
+  3. No functional change to MAC/PHY register logic (NCR/PAR/MAR/PRR,
+     QF_RD_REGS/QF_WR_REGS, rx_fixup/tx_fixup framing).
+
+Build (on target, offline):
+  cd driver/qf9700
+  make
+  # produces qf9700.ko
+
+Install is handled by ../../install.sh:
+  - copies qf9700.ko to /lib/modules/<kver>/kernel/drivers/net/usb/
+  - depmod -a, modprobe qf9700
+  - installs usb-storage quirk for 9702 (options usb-storage quirks=0fe6:9702:i)
+  - installs modules-load.d + udev rule, optional DKMS if dkms is present
+
+References for 9702 composite behaviour:
+  - https://github.com/genocem/usb-2-10-100m-ethernet-adapter-rd9700-updated-linux-driver
+  - AskUbuntu "VK-QF9700 0fe6:9702" (usb-devices shows If#0 stor. + If#1 (none))
+
+License: GPLv2 (see ../../LICENSE, original notices retained).

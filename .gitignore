@@ -1,0 +1,14 @@
+# QF9700 offline installer — git ignores (generated/offline artefacts)
+dist/
+packages/*.deb
+packages/.dl-tmp/
+logs/*.log
+config/backup/*/
+!config/backup/.gitkeep
+driver/qf9700/*.o
+driver/qf9700/*.ko
+driver/qf9700/*.mod*
+driver/qf9700/Module.symvers
+driver/qf9700/modules.order
+driver/qf9700/.tmp_versions/
+driver/qf9700/.*.cmd

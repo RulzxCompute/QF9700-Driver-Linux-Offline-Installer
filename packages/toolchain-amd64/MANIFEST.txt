@@ -1,0 +1,18 @@
+# QF9700 offline toolchain MANIFEST (amd64, Ubuntu 22.04 jammy)
+# Generated: 2026-10-02 (UTC), curated closure proven on 5.15.0-119-generic
+# (CC/MODPOST/LD qf9700.ko + DHCP working).
+# Install: sudo ./scripts/install-toolchain.sh  (dpkg -i, no network)
+# Order: base/libs -> cpp-11 -> gcc-11 -> cpp/gcc metapackages -> make
+# Excluded on purpose (proven unnecessary for the kernel build, caused only
+# dpkg noise): libcc1-0 (GDB plugin, GCC 12 version skew) and libgcc-11-dev
+# (sanitizer runtime chain libgomp1/libitm1/libatomic1/libasan6/liblsan0/
+# libtsan0/libubsan1/libquadmath0). The functional compile test is
+# authoritative; existing system copies of those are left untouched.
+cpp-11_11.4.0-1ubuntu1~22.04.3_amd64.deb 10000304 sha256=5243177370b810cc40341801a3b8def6cdd7477ac765862f7727a868629947a3
+cpp_11.2.0-1ubuntu1_amd64.deb 27700 sha256=44f881cf66bfaac163a6c45b4bfb5e79a40780b96af78bec6e9c58f973b8d7bd
+gcc-11-base_11.4.0-1ubuntu1~22.04.3_amd64.deb 215826 sha256=a0445a3889fd4441cc3b3a125d6d1589de3d2628ca4e92a352170ed0fea4d18b
+gcc-11_11.4.0-1ubuntu1~22.04.3_amd64.deb 20143406 sha256=5422307110e695d62a2574c8b765bf38d48b2ed520206e5b7d2b9081a68008f3
+gcc_11.2.0-1ubuntu1_amd64.deb 5112 sha256=be895c1a9611905254f818c41092f147f5f2a566f87f1817b5c36d977020bea7
+libisl23_0.24-2build1_amd64.deb 726854 sha256=4cb0faab32c896165cf4ebe3c3ebce3176bf869453636d7fe8be89dccc2ae5af
+libmpc3_1.2.1-2build1_amd64.deb 46868 sha256=6cd43b60ac14890737a3402a35350d6696bc1521de8731cdecc9e7ef10041446
+make_4.3-4.1build1_amd64.deb 179742 sha256=080b79a1a1623a2e6c6eead37d62b15fdf2c3dbfeafe8ecf5e31c54eb09eadcc
